@@ -14,7 +14,7 @@ jobs:
       - name: Tell git to see cases
         run: git config core.ignorecase false
       - name: Lowercase all folders
-        run: rename 'y/A-Z/a-z/' *
+        run: for i in $( ls | grep [A-Z] ); do mv -i $i `echo $i | tr 'A-Z' 'a-z'`; done
       - name: Commit file changes
         run: git commit -m "normalize folders"
       - name: Push Commit
